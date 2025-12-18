@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, Component } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Users, Activity, Calendar, X, Check, ChevronDown, ChevronUp, MessageSquare, Settings, Flame } from 'lucide-react';
+import { Plus, Users, Activity, Calendar, X, Check, ChevronDown, ChevronUp, MessageSquare, Settings, Flame, Trophy } from 'lucide-react';
 // --- Types ---
 type NoteEntry = {
   quality: number;
@@ -638,6 +638,79 @@ const NotesWidget = ({
     </div>
   </motion.div>;
 };
+const GoalCompletionModal = ({
+  visible,
+  onClose,
+  count
+}: {
+  visible: boolean;
+  onClose: () => void;
+  count: number;
+}) => {
+  return <AnimatePresence>
+    {visible && <motion.div initial={{
+      opacity: 0
+    }} animate={{
+      opacity: 1
+    }} exit={{
+      opacity: 0
+    }} className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      {/* Distorted Backdrop */}
+      <motion.div initial={{
+        backdropFilter: 'blur(0px)',
+        backgroundColor: 'rgba(0,0,0,0)'
+      }} animate={{
+        backdropFilter: 'blur(16px)',
+        backgroundColor: 'rgba(0,0,0,0.8)'
+      }} exit={{
+        backdropFilter: 'blur(0px)',
+        backgroundColor: 'rgba(0,0,0,0)'
+      }} className="absolute inset-0" onClick={onClose} />
+
+      {/* Modal Content */}
+      <motion.div initial={{
+        scale: 0.9,
+        opacity: 0,
+        y: 20
+      }} animate={{
+        scale: 1,
+        opacity: 1,
+        y: 0
+      }} exit={{
+        scale: 0.9,
+        opacity: 0,
+        y: 20
+      }} transition={{
+        type: 'spring',
+        damping: 25,
+        stiffness: 300
+      }} className="relative z-10 bg-[#1a1a1a] border border-[#2a2a2a] w-full max-w-sm rounded-3xl p-8 text-center shadow-2xl overflow-hidden">
+
+        {/* Ambient Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-emerald-500/20 blur-[50px] rounded-full pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="w-20 h-20 bg-[#2a2a2a] rounded-full flex items-center justify-center mb-6 border border-[#333] shadow-lg">
+            <Trophy className="w-10 h-10 text-emerald-400" />
+          </div>
+
+          <h2 className="text-2xl font-bold mb-2 bg-gradient-to-br from-white to-neutral-400 bg-clip-text text-transparent">
+            Daily Goal Reached!
+          </h2>
+
+          <p className="text-neutral-400 mb-8 leading-relaxed">
+            You've hit your target of <span className="text-white font-semibold">{count}</span> interactions today. Keep up the momentum!
+          </p>
+
+          <button onClick={onClose} className="w-full py-3.5 bg-white text-black rounded-xl font-bold text-base hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg shadow-emerald-900/10">
+            Awesome
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>}
+  </AnimatePresence>;
+};
+
 export function CounterPage() {
   // --- State ---
   const [todayCount, setTodayCount] = useState(0);
@@ -646,6 +719,7 @@ export function CounterPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [dailyGoal, setDailyGoal] = useState(10);
   const [streaks, setStreaks] = useState({ current: 0, longest: 0 });
+  const [showGoalPopup, setShowGoalPopup] = useState(false);
   // Modal State
   const [showSlider, setShowSlider] = useState(false);
   const [quality, setQuality] = useState(3);
@@ -748,6 +822,13 @@ export function CounterPage() {
         }
       };
     });
+
+    // Check for goal completion
+    // We use todayCount + 1 because state updates are async and we want to catch the transition
+    if (todayCount + 1 === dailyGoal) {
+      setShowGoalPopup(true);
+    }
+
     setShowSlider(false);
   };
 
@@ -919,6 +1000,9 @@ export function CounterPage() {
     <AnimatePresence>
       {showSlider && <QualitySlider value={quality} onChange={setQuality} note={note} onNoteChange={setNote} onConfirm={handleConfirmIncrement} onCancel={() => setShowSlider(false)} />}
     </AnimatePresence>
+
+    {/* Goal Completion Modal */}
+    <GoalCompletionModal visible={showGoalPopup} onClose={() => setShowGoalPopup(false)} count={dailyGoal} />
 
     {/* Widget Modals */}
     <AnimatePresence>
