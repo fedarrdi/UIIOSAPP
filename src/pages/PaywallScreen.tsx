@@ -53,19 +53,19 @@ export function PaywallScreen({ onContinue, onSkip }: PaywallScreenProps) {
     const selectedPlanData = plans.find(p => p.id === selectedPlan)!;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#e8f4f8] via-[#f0e8f8] to-[#f8e8f0] flex items-center justify-center p-4">
-            <div className="w-full max-w-md bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden">
+        <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-4">
+            <div className="w-full max-w-md bg-[#1a1a1a] rounded-3xl shadow-2xl overflow-hidden border border-[#2a2a2a]">
                 {/* Header with Close Button */}
                 <div className="relative p-6 pb-4">
                     <button
                         onClick={onSkip}
-                        className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                        className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#2a2a2a] hover:bg-[#3a3a3a] transition-colors"
                     >
-                        <X className="w-5 h-5 text-gray-600" />
+                        <X className="w-5 h-5 text-gray-400" />
                     </button>
 
                     <div className="text-center">
-                        <h1 className="text-3xl font-bold text-gray-900 mb-3">
+                        <h1 className="text-3xl font-bold text-white mb-3">
                             Choose your plan
                         </h1>
                     </div>
@@ -76,8 +76,8 @@ export function PaywallScreen({ onContinue, onSkip }: PaywallScreenProps) {
                             onClick={() => setBillingPeriod('monthly')}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                                 billingPeriod === 'monthly'
-                                    ? 'bg-gray-900 text-white'
-                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                    ? 'bg-white text-gray-900'
+                                    : 'bg-[#2a2a2a] text-gray-400 hover:bg-[#3a3a3a]'
                             }`}
                         >
                             Monthly
@@ -87,8 +87,8 @@ export function PaywallScreen({ onContinue, onSkip }: PaywallScreenProps) {
                                 onClick={() => setBillingPeriod('yearly')}
                                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                                     billingPeriod === 'yearly'
-                                        ? 'bg-gray-900 text-white'
-                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                        ? 'bg-white text-gray-900'
+                                        : 'bg-[#2a2a2a] text-gray-400 hover:bg-[#3a3a3a]'
                                 }`}
                             >
                                 Yearly
@@ -106,10 +106,10 @@ export function PaywallScreen({ onContinue, onSkip }: PaywallScreenProps) {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             onClick={() => setSelectedPlan(plan.id)}
-                            className={`relative w-full bg-white rounded-2xl p-4 text-left transition-all ${
+                            className={`relative w-full bg-[#0f0f0f] rounded-2xl p-4 text-left transition-all ${
                                 selectedPlan === plan.id
-                                    ? 'ring-2 ring-gray-900 shadow-lg'
-                                    : 'ring-1 ring-gray-200 hover:ring-gray-300'
+                                    ? 'ring-2 ring-white shadow-lg shadow-white/10'
+                                    : 'ring-1 ring-[#2a2a2a] hover:ring-[#3a3a3a]'
                             }`}
                         >
                             {/* Selection Indicator */}
@@ -121,14 +121,14 @@ export function PaywallScreen({ onContinue, onSkip }: PaywallScreenProps) {
 
                             <div className="flex items-center justify-between pl-8">
                                 <div>
-                                    <div className="text-xs text-teal-600 font-semibold mb-1">{plan.trial}</div>
-                                    <div className="text-base font-bold text-gray-900">{plan.name}</div>
+                                    <div className="text-xs text-teal-400 font-semibold mb-1">{plan.trial}</div>
+                                    <div className="text-base font-bold text-white">{plan.name}</div>
                                     <div className="text-xs text-gray-500">{plan.billing}</div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="text-2xl font-bold text-gray-900">{plan.price}</div>
+                                    <div className="text-2xl font-bold text-white">{plan.price}</div>
                                     {plan.originalPrice && (
-                                        <div className="text-sm text-gray-400 line-through">{plan.originalPrice}</div>
+                                        <div className="text-sm text-gray-600 line-through">{plan.originalPrice}</div>
                                     )}
                                 </div>
                             </div>
@@ -144,16 +144,16 @@ export function PaywallScreen({ onContinue, onSkip }: PaywallScreenProps) {
 
                 {/* What do I get? Section */}
                 <div className="px-6 mb-6">
-                    <h2 className="text-lg font-bold text-gray-900 mb-4">What do I get?</h2>
+                    <h2 className="text-lg font-bold text-white mb-4">What do I get?</h2>
                     <div className="space-y-3">
                         {benefits.map((benefit, idx) => (
                             <div key={idx} className="flex items-start gap-3">
-                                <div className="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-700">
+                                <div className="flex-shrink-0 w-10 h-10 bg-[#2a2a2a] rounded-full flex items-center justify-center text-gray-400">
                                     {benefit.icon}
                                 </div>
                                 <div>
-                                    <div className="font-semibold text-gray-900 text-sm">{benefit.text}</div>
-                                    <div className="text-xs text-gray-600 mt-0.5">{benefit.description}</div>
+                                    <div className="font-semibold text-white text-sm">{benefit.text}</div>
+                                    <div className="text-xs text-gray-400 mt-0.5">{benefit.description}</div>
                                 </div>
                             </div>
                         ))}
@@ -164,13 +164,13 @@ export function PaywallScreen({ onContinue, onSkip }: PaywallScreenProps) {
                 <div className="px-6 pb-6">
                     <button
                         onClick={onContinue}
-                        className="w-full py-4 bg-gray-900 text-white rounded-2xl font-bold text-base hover:bg-gray-800 active:scale-[0.98] transition-all shadow-lg"
+                        className="w-full py-4 bg-white text-gray-900 rounded-2xl font-bold text-base hover:bg-gray-100 active:scale-[0.98] transition-all shadow-lg"
                     >
                         Continue
                     </button>
                     <button
                         onClick={onSkip}
-                        className="w-full mt-3 text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors"
+                        className="w-full mt-3 text-gray-400 hover:text-white text-sm font-medium transition-colors"
                     >
                         I HAVE A PROMO CODE
                     </button>
