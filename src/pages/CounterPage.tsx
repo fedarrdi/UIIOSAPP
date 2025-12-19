@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, Component } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Users, Activity, Calendar, X, Check, ChevronDown, ChevronUp, MessageSquare, Settings, Flame, Trophy } from 'lucide-react';
+import { PhoneMockup } from '../components/PhoneMockup';
 // --- Types ---
 type NoteEntry = {
   quality: number;
@@ -1279,8 +1280,9 @@ export function CounterPage() {
   };
 
   if (!isLoaded) return null;
-  return <main className="min-h-screen w-full bg-[#0a0a0a] text-white p-6 pb-40 font-sans selection:bg-white/20">
-    <div className="max-w-md mx-auto space-y-6">
+  return <PhoneMockup>
+  return <main className="h-screen w-full bg-[#0a0a0a] text-white p-6 pb-40 font-sans selection:bg-white/20">
+        <div className="max-w-md mx-auto space-y-6">
       {/* Header */}
       <header className="flex justify-between items-center py-4">
         <h1 className="text-3xl font-bold tracking-tight">Social Tracker</h1>
@@ -1815,5 +1817,6 @@ export function CounterPage() {
         </WidgetModal>
       )}
     </AnimatePresence>
-  </main>;
+  </main>
+  </PhoneMockup>;
 }

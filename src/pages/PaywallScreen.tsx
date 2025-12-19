@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, X, Lightbulb, TrendingUp } from 'lucide-react';
+import { PhoneMockup } from '../components/PhoneMockup';
 
 interface PaywallScreenProps {
     onContinue: () => void;
@@ -53,8 +54,9 @@ export function PaywallScreen({ onContinue, onSkip }: PaywallScreenProps) {
     const selectedPlanData = plans.find(p => p.id === selectedPlan)!;
 
     return (
-        <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-4">
-            <div className="w-full max-w-md bg-[#1a1a1a] rounded-3xl shadow-2xl overflow-hidden border border-[#2a2a2a]">
+        <PhoneMockup>
+            <div className="h-screen bg-[#0a0a0a] flex items-center justify-center p-4">
+                <div className="w-full max-w-md bg-[#1a1a1a] rounded-3xl shadow-2xl overflow-hidden border border-[#2a2a2a]">
                 {/* Header with Close Button */}
                 <div className="relative p-6 pb-4">
                     <button
@@ -176,6 +178,8 @@ export function PaywallScreen({ onContinue, onSkip }: PaywallScreenProps) {
                     </button>
                 </div>
             </div>
-        </div>
+            </div>
+        </PhoneMockup>
     );
 }
+
