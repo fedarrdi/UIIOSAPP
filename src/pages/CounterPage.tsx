@@ -711,6 +711,351 @@ const GoalCompletionModal = ({
   </AnimatePresence>;
 };
 
+// Trophy SVG Components - Line art style inspired by reference image
+const TrophySimple = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+    {/* Cup body */}
+    <path d="M 25 25 L 25 40 Q 25 50, 35 55 L 35 60 L 30 60 L 30 70 L 70 70 L 70 60 L 65 60 L 65 55 Q 75 50, 75 40 L 75 25 Z" />
+    {/* Handles */}
+    <path d="M 25 30 Q 15 30, 15 40 Q 15 50, 25 50" fill="none" />
+    <path d="M 75 30 Q 85 30, 85 40 Q 85 50, 75 50" fill="none" />
+    {/* Base */}
+    <rect x="25" y="70" width="50" height="5" />
+  </svg>
+);
+
+const TrophyMedium = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+    {/* Cup with more detail */}
+    <path d="M 20 20 L 20 35 Q 20 48, 32 53 L 32 60 L 28 60 L 28 72 L 72 72 L 72 60 L 68 60 L 68 53 Q 80 48, 80 35 L 80 20 Z" />
+    {/* Decorative handles */}
+    <path d="M 20 25 Q 10 25, 8 35 Q 8 45, 20 48" fill="none" />
+    <path d="M 80 25 Q 90 25, 92 35 Q 92 45, 80 48" fill="none" />
+    {/* Star on cup */}
+    <path d="M 50 30 L 52 38 L 60 38 L 54 42 L 56 50 L 50 45 L 44 50 L 46 42 L 40 38 L 48 38 Z" />
+    {/* Pedestal base */}
+    <rect x="28" y="72" width="44" height="4" />
+    <rect x="25" y="76" width="50" height="6" />
+  </svg>
+);
+
+const TrophyLarge = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
+    {/* Larger ornate cup */}
+    <path d="M 18 18 L 18 32 Q 18 46, 30 52 L 30 58 L 26 58 L 26 70 L 74 70 L 74 58 L 70 58 L 70 52 Q 82 46, 82 32 L 82 18 Z" />
+    {/* Ornate handles with curves */}
+    <path d="M 18 22 Q 6 22, 5 33 Q 5 44, 18 46" fill="none" strokeWidth="2" />
+    <path d="M 82 22 Q 94 22, 95 33 Q 95 44, 82 46" fill="none" strokeWidth="2" />
+    {/* Laurel wreath left */}
+    <path d="M 15 30 Q 12 35, 15 40 M 13 32 Q 10 35, 13 38" fill="none" strokeWidth="1.5" />
+    {/* Laurel wreath right */}
+    <path d="M 85 30 Q 88 35, 85 40 M 87 32 Q 90 35, 87 38" fill="none" strokeWidth="1.5" />
+    {/* Star with detail */}
+    <path d="M 50 28 L 53 37 L 62 37 L 55 42 L 58 51 L 50 46 L 42 51 L 45 42 L 38 37 L 47 37 Z" fill="currentColor" opacity="0.2" />
+    <path d="M 50 28 L 53 37 L 62 37 L 55 42 L 58 51 L 50 46 L 42 51 L 45 42 L 38 37 L 47 37 Z" fill="none" />
+    {/* Multi-tier pedestal */}
+    <rect x="26" y="70" width="48" height="3" />
+    <rect x="22" y="73" width="56" height="5" />
+    <rect x="20" y="78" width="60" height="6" />
+  </svg>
+);
+
+const TrophyEpic = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1.5">
+    {/* Grand ornate cup */}
+    <path d="M 15 15 L 15 30 Q 15 45, 28 51 L 28 56 L 24 56 L 24 68 L 76 68 L 76 56 L 72 56 L 72 51 Q 85 45, 85 30 L 85 15 Z" />
+    {/* Very ornate handles */}
+    <path d="M 15 18 Q 3 18, 2 30 Q 2 42, 15 45" fill="none" strokeWidth="2.2" />
+    <path d="M 85 18 Q 97 18, 98 30 Q 98 42, 85 45" fill="none" strokeWidth="2.2" />
+    {/* Detailed laurels - left */}
+    <path d="M 12 25 Q 8 23, 6 25 M 10 28 Q 6 26, 4 28 M 8 31 Q 4 29, 2 31 M 6 34 Q 3 32, 1 34" fill="none" strokeWidth="1.5" />
+    {/* Detailed laurels - right */}
+    <path d="M 88 25 Q 92 23, 94 25 M 90 28 Q 94 26, 96 28 M 92 31 Q 96 29, 98 31 M 94 34 Q 97 32, 99 34" fill="none" strokeWidth="1.5" />
+    {/* Central star - filled with pattern */}
+    <path d="M 50 25 L 54 36 L 65 36 L 56 43 L 60 54 L 50 47 L 40 54 L 44 43 L 35 36 L 46 36 Z" fill="currentColor" opacity="0.3" />
+    <path d="M 50 25 L 54 36 L 65 36 L 56 43 L 60 54 L 50 47 L 40 54 L 44 43 L 35 36 L 46 36 Z" fill="none" strokeWidth="1.8" />
+    {/* Decorative band on cup */}
+    <line x1="20" y1="22" x2="80" y2="22" strokeWidth="1.5" />
+    {/* Grand pedestal */}
+    <rect x="24" y="68" width="52" height="3" />
+    <rect x="20" y="71" width="60" height="4" />
+    <rect x="16" y="75" width="68" height="6" />
+    <rect x="14" y="81" width="72" height="4" />
+    {/* Decorative elements on pedestal */}
+    <rect x="32" y="69" width="4" height="2" opacity="0.5" />
+    <rect x="48" y="69" width="4" height="2" opacity="0.5" />
+    <rect x="64" y="69" width="4" height="2" opacity="0.5" />
+  </svg>
+);
+
+const TrophyLegendary = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1.3">
+    {/* Massive ornate cup with top star */}
+    <path d="M 12 12 L 12 28 Q 12 44, 26 50 L 26 54 L 22 54 L 22 66 L 78 66 L 78 54 L 74 54 L 74 50 Q 88 44, 88 28 L 88 12 Z" />
+    {/* Top star ornament */}
+    <path d="M 50 5 L 52 10 L 57 10 L 53 13 L 55 18 L 50 15 L 45 18 L 47 13 L 43 10 L 48 10 Z" fill="currentColor" opacity="0.4" />
+    <path d="M 50 5 L 52 10 L 57 10 L 53 13 L 55 18 L 50 15 L 45 18 L 47 13 L 43 10 L 48 10 Z" strokeWidth="1.5" />
+    {/* Extremely ornate handles */}
+    <path d="M 12 15 Q 0 15, -1 28 Q -1 41, 12 44" fill="none" strokeWidth="2.5" />
+    <path d="M 88 15 Q 100 15, 101 28 Q 101 41, 88 44" fill="none" strokeWidth="2.5" />
+    {/* Full laurel wreaths - left side */}
+    <path d="M 10 20 Q 5 18, 3 20 M 8 23 Q 3 21, 1 23 M 6 26 Q 1 24, -1 26 M 4 29 Q 0 27, -2 29 M 2 32 Q -1 30, -3 32 M 1 35 Q -2 33, -4 35" fill="none" strokeWidth="1.3" />
+    {/* Full laurel wreaths - right side */}
+    <path d="M 90 20 Q 95 18, 97 20 M 92 23 Q 97 21, 99 23 M 94 26 Q 99 24, 101 26 M 96 29 Q 100 27, 102 29 M 98 32 Q 101 30, 103 32 M 99 35 Q 102 33, 104 35" fill="none" strokeWidth="1.3" />
+    {/* Multiple stars on cup */}
+    <path d="M 50 22 L 54 34 L 66 34 L 56 41 L 60 53 L 50 46 L 40 53 L 44 41 L 34 34 L 46 34 Z" fill="currentColor" opacity="0.4" />
+    <path d="M 50 22 L 54 34 L 66 34 L 56 41 L 60 53 L 50 46 L 40 53 L 44 41 L 34 34 L 46 34 Z" strokeWidth="2" />
+    {/* Decorative bands */}
+    <line x1="16" y1="18" x2="84" y2="18" strokeWidth="1.5" />
+    <line x1="18" y1="24" x2="82" y2="24" strokeWidth="1" opacity="0.5" />
+    {/* Epic multi-tier pedestal */}
+    <rect x="22" y="66" width="56" height="2" />
+    <rect x="18" y="68" width="64" height="4" />
+    <rect x="14" y="72" width="72" height="5" />
+    <rect x="10" y="77" width="80" height="6" />
+    <rect x="8" y="83" width="84" height="5" />
+    {/* Pedestal decorations */}
+    <rect x="26" y="67" width="3" height="1" opacity="0.6" />
+    <rect x="38" y="67" width="3" height="1" opacity="0.6" />
+    <rect x="50" y="67" width="3" height="1" opacity="0.6" />
+    <rect x="62" y="67" width="3" height="1" opacity="0.6" />
+    <rect x="74" y="67" width="3" height="1" opacity="0.6" />
+  </svg>
+);
+
+const StreakMilestoneModal = ({
+  visible,
+  onClose,
+  days,
+  isNewBest
+}: {
+  visible: boolean;
+  onClose: () => void;
+  days: number;
+  isNewBest: boolean;
+}) => {
+  const getMilestoneData = (d: number) => {
+    if (isNewBest) return {
+      accent: '#FF6B35',
+      accentGlow: 'rgba(255, 107, 53, 0.3)',
+      TrophyComponent: TrophyEpic,
+      title: 'New Record!',
+      subtitle: `${d} day streak — your best yet`,
+      buttonText: 'Keep it Burning',
+      trophySize: 'w-32 h-32',
+      showRibbon: true,
+      particles: 12
+    };
+    if (d >= 365) return {
+      accent: '#A855F7',
+      accentGlow: 'rgba(168, 85, 247, 0.3)',
+      TrophyComponent: TrophyLegendary,
+      title: 'Legendary!',
+      subtitle: '365 days of pure dedication',
+      buttonText: 'Unstoppable',
+      trophySize: 'w-36 h-36',
+      showRibbon: true,
+      particles: 16
+    };
+    if (d >= 180) return {
+      accent: '#3B82F6',
+      accentGlow: 'rgba(59, 130, 246, 0.3)',
+      TrophyComponent: TrophyEpic,
+      title: '6 Month Streak!',
+      subtitle: 'Half a year of consistency',
+      buttonText: 'Amazing',
+      trophySize: 'w-32 h-32',
+      showRibbon: true,
+      particles: 10
+    };
+    if (d >= 90) return {
+      accent: '#FACC15',
+      accentGlow: 'rgba(250, 204, 21, 0.3)',
+      TrophyComponent: TrophyLarge,
+      title: '3 Month Streak!',
+      subtitle: '90 days of showing up',
+      buttonText: 'Excellent',
+      trophySize: 'w-28 h-28',
+      showRibbon: false,
+      particles: 8
+    };
+    if (d >= 30) return {
+      accent: '#CBD5E1',
+      accentGlow: 'rgba(203, 213, 225, 0.3)',
+      TrophyComponent: TrophyMedium,
+      title: '1 Month Streak!',
+      subtitle: '30 consecutive days',
+      buttonText: 'Keep Going',
+      trophySize: 'w-24 h-24',
+      showRibbon: false,
+      particles: 6
+    };
+    if (d >= 7) return {
+      accent: '#B45309',
+      accentGlow: 'rgba(180, 83, 9, 0.3)',
+      TrophyComponent: TrophySimple,
+      title: '1 Week Streak!',
+      subtitle: '7 days in a row',
+      buttonText: 'Nice Work',
+      trophySize: 'w-20 h-20',
+      showRibbon: false,
+      particles: 4
+    };
+    return {
+      accent: '#FFFFFF',
+      accentGlow: 'rgba(255, 255, 255, 0.2)',
+      TrophyComponent: TrophySimple,
+      title: `${d} Day Streak!`,
+      subtitle: 'You\'re on fire!',
+      buttonText: 'Continue',
+      trophySize: 'w-20 h-20',
+      showRibbon: false,
+      particles: 3
+    };
+  };
+
+  const data = getMilestoneData(days);
+  const TrophyIcon = data.TrophyComponent;
+
+  return <AnimatePresence>
+    {visible && <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[110] flex items-center justify-center p-4"
+    >
+      {/* Premium Backdrop */}
+      <motion.div
+        initial={{ backdropFilter: 'blur(0px)', backgroundColor: 'rgba(0,0,0,0)' }}
+        animate={{ backdropFilter: 'blur(16px)', backgroundColor: 'rgba(0,0,0,0.85)' }}
+        exit={{ backdropFilter: 'blur(0px)', backgroundColor: 'rgba(0,0,0,0)' }}
+        className="absolute inset-0"
+        onClick={onClose}
+      />
+
+      {/* Modal Card */}
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+        className="relative z-10 bg-gradient-to-b from-[#1a1a1a] to-[#141414] border border-[#2a2a2a] w-full max-w-[380px] rounded-3xl p-10 text-center shadow-2xl overflow-hidden"
+      >
+        {/* Ambient Glow */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full blur-[80px] pointer-events-none"
+          style={{ backgroundColor: data.accentGlow }}
+        />
+
+        {/* Floating Particles */}
+        {Array.from({ length: data.particles }).map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{
+              opacity: 0,
+              scale: 0,
+              x: 0,
+              y: 0
+            }}
+            animate={{
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0],
+              x: (Math.random() - 0.5) * 200,
+              y: -100 - Math.random() * 100
+            }}
+            transition={{
+              duration: 2 + Math.random() * 2,
+              delay: Math.random() * 0.5,
+              repeat: Infinity,
+              repeatDelay: Math.random() * 2
+            }}
+            className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full"
+            style={{ backgroundColor: data.accent }}
+          />
+        ))}
+
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Trophy Container */}
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{
+              type: 'spring',
+              damping: 12,
+              stiffness: 200,
+              delay: 0.1
+            }}
+            className="mb-8 relative"
+          >
+            {/* Glow effect behind trophy */}
+            <div
+              className={`absolute inset-0 ${data.trophySize} blur-2xl opacity-50`}
+              style={{ backgroundColor: data.accent }}
+            />
+
+            <TrophyIcon
+              className={`${data.trophySize} relative z-10 drop-shadow-2xl`}
+              style={{ color: data.accent }}
+            />
+
+            {/* Ribbon decoration for special milestones */}
+            {data.showRibbon && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
+                className="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
+                style={{ backgroundColor: data.accent, color: '#000' }}
+              >
+                ★
+              </motion.div>
+            )}
+          </motion.div>
+
+          {/* Title */}
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl font-bold mb-3 tracking-tight"
+            style={{ color: data.accent }}
+          >
+            {data.title}
+          </motion.h2>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-neutral-400 text-base font-medium mb-10 leading-relaxed max-w-[280px]"
+          >
+            {data.subtitle}
+          </motion.p>
+
+          {/* CTA Button */}
+          <motion.button
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            onClick={onClose}
+            className="w-full py-4 rounded-2xl font-bold text-base transition-all shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+            style={{
+              backgroundColor: data.accent,
+              color: '#000',
+              boxShadow: `0 10px 40px ${data.accentGlow}`
+            }}
+          >
+            {data.buttonText}
+          </motion.button>
+        </div>
+      </motion.div>
+    </motion.div>}
+  </AnimatePresence>;
+};
+
 export function CounterPage() {
   // --- State ---
   const [todayCount, setTodayCount] = useState(0);
@@ -720,6 +1065,12 @@ export function CounterPage() {
   const [dailyGoal, setDailyGoal] = useState(10);
   const [streaks, setStreaks] = useState({ current: 0, longest: 0 });
   const [showGoalPopup, setShowGoalPopup] = useState(false);
+  // Streak Popup State
+  const [showStreakPopup, setShowStreakPopup] = useState(false);
+  const [streakMilestone, setStreakMilestone] = useState(0);
+  const [isNewBestStreak, setIsNewBestStreak] = useState(false);
+  const isFirstLoad = useRef(true);
+
   // Modal State
   const [showSlider, setShowSlider] = useState(false);
   const [quality, setQuality] = useState(3);
@@ -758,7 +1109,21 @@ export function CounterPage() {
       localStorage.setItem('social-tracker-last-date', today);
     }
     setIsLoaded(true);
+
+    // Check for debug URL params
+    const params = new URLSearchParams(window.location.search);
+    const debugStreak = params.get('debug_streak');
+    const debugNewBest = params.get('debug_new_best');
+
+    if (debugStreak) {
+      setTimeout(() => {
+        setStreakMilestone(parseInt(debugStreak));
+        setIsNewBestStreak(debugNewBest === 'true');
+        setShowStreakPopup(true);
+      }, 1000);
+    }
   }, []);
+
   useEffect(() => {
     if (!isLoaded) return;
     // Save to localStorage
@@ -769,7 +1134,42 @@ export function CounterPage() {
     localStorage.setItem('social-tracker-last-date', getTodayString());
 
     // Recalculate streaks whenever history changes
-    setStreaks(calculateStreaks(history));
+    const newStreaks = calculateStreaks(history);
+    setStreaks(newStreaks);
+
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+      return;
+    }
+
+    // Check for milestones (real logic)
+    // We only want to show this if the streak INCREASED today (meaning we just did an action)
+    // But for simplicity, we can check if current streak matches a milestone and we haven't shown it today?
+    // Or just rely on the fact that this effect runs when `history` changes.
+
+    // Milestones: 7, 30, 90, 180, 365
+    const milestones = [7, 30, 90, 180, 365];
+    if (milestones.includes(newStreaks.current)) {
+      // Simple check: if todayCount > 0 (meaning we did something today)
+      if (todayCount > 0) {
+        setStreakMilestone(newStreaks.current);
+        setShowStreakPopup(true);
+      }
+    }
+
+    // Check for New Best Streak
+    // We need to store the previous best to know if we beat it.
+    const savedMaxStreak = parseInt(localStorage.getItem('social-tracker-max-streak') || '0');
+    if (newStreaks.current > savedMaxStreak && newStreaks.current > 0) {
+      localStorage.setItem('social-tracker-max-streak', newStreaks.current.toString());
+      setIsNewBestStreak(true);
+      setStreakMilestone(newStreaks.current);
+      setShowStreakPopup(true);
+    } else if (newStreaks.longest > savedMaxStreak) {
+      // Sync max streak if we missed it (e.g. from history calc)
+      localStorage.setItem('social-tracker-max-streak', newStreaks.longest.toString());
+    }
+
   }, [todayCount, totalCount, history, dailyGoal, isLoaded]);
   // --- Handlers ---
   const handleStartIncrement = () => {
@@ -1000,6 +1400,14 @@ export function CounterPage() {
     <AnimatePresence>
       {showSlider && <QualitySlider value={quality} onChange={setQuality} note={note} onNoteChange={setNote} onConfirm={handleConfirmIncrement} onCancel={() => setShowSlider(false)} />}
     </AnimatePresence>
+
+    {/* Streak Milestone Modal */}
+    <StreakMilestoneModal
+      visible={showStreakPopup}
+      onClose={() => setShowStreakPopup(false)}
+      days={streakMilestone}
+      isNewBest={isNewBestStreak}
+    />
 
     {/* Goal Completion Modal */}
     <GoalCompletionModal visible={showGoalPopup} onClose={() => setShowGoalPopup(false)} count={dailyGoal} />
